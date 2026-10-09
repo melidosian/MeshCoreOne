@@ -627,3 +627,26 @@
 
 /* Location: KeyGenerationError+UserFacingMessage.swift - Key data is not a valid Ed25519 expanded private key */
 "error.keyGeneration.invalidKey" = "The key is not a valid Ed25519 private key.";
+
+// MARK: - CarPlay
+
+/* CarPlay tab listing direct-message conversations */
+"carplay.tab.chats" = "Chats";
+
+/* CarPlay tab listing channel conversations */
+"carplay.tab.channels" = "Channels";
+
+/* CarPlay empty state when the radio has no direct-message conversations */
+"carplay.empty.chats" = "No Chats";
+
+/* CarPlay empty state when the radio has no channels */
+"carplay.empty.channels" = "No Channels";
+
+/* CarPlay row shown when no radio has been paired or selected */
+"carplay.noRadio" = "No Radio Connected";
+
+/* CarPlay list header when the radio is not connected; sends are unavailable until it reconnects */
+"carplay.radioDisconnected" = "Radio Disconnected";
+
+/* CarPlay row detail with the conversation's unread count. %d is the count. */
+"carplay.unread" = "%d unread";

@@ -10,8 +10,9 @@ import MC1Services
 @MainActor
 final class IntentBridge {
   /// The single bridge for the process. App Intents receive it through
-  /// `AppDependencyManager`; the UIKit-instantiated SiriKit app delegate has
-  /// no injection point, so it reads it here.
+  /// `AppDependencyManager`; UIKit-instantiated objects (the SiriKit app
+  /// delegate and the CarPlay scene delegate) have no injection point, so they
+  /// read it here.
   static let shared = IntentBridge()
 
   private(set) var appState: AppState?

@@ -2285,6 +2285,28 @@ public enum L10n {
         public static let title = L10n.tr("Localizable", "alert.pairingFailed.title", fallback: "Couldn't Pair")
       }
     }
+    public enum Carplay {
+      /// CarPlay row shown when no radio has been paired or selected
+      public static let noRadio = L10n.tr("Localizable", "carplay.noRadio", fallback: "No Radio Connected")
+      /// CarPlay list header when the radio is not connected; sends are unavailable until it reconnects
+      public static let radioDisconnected = L10n.tr("Localizable", "carplay.radioDisconnected", fallback: "Radio Disconnected")
+      /// CarPlay row detail with the conversation's unread count. %d is the count.
+      public static func unread(_ p1: Int) -> String {
+        return L10n.tr("Localizable", "carplay.unread", p1, fallback: "%d unread")
+      }
+      public enum Empty {
+        /// CarPlay empty state when the radio has no channels
+        public static let channels = L10n.tr("Localizable", "carplay.empty.channels", fallback: "No Channels")
+        /// CarPlay empty state when the radio has no direct-message conversations
+        public static let chats = L10n.tr("Localizable", "carplay.empty.chats", fallback: "No Chats")
+      }
+      public enum Tab {
+        /// CarPlay tab listing channel conversations
+        public static let channels = L10n.tr("Localizable", "carplay.tab.channels", fallback: "Channels")
+        /// CarPlay tab listing direct-message conversations
+        public static let chats = L10n.tr("Localizable", "carplay.tab.chats", fallback: "Chats")
+      }
+    }
     public enum Common {
       /// Standard cancel button for dialogs and sheets
       public static let cancel = L10n.tr("Localizable", "common.cancel", fallback: "Cancel")

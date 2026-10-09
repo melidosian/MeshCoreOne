@@ -5793,6 +5793,18 @@ public enum L10n {
         }
       }
     }
+    public enum Siri {
+      /// Shown when Siri access was declined or is restricted
+      public static let disabled = L10n.tr("Settings", "siri.disabled", fallback: "Siri Not Allowed")
+      /// Button that asks for permission to use Siri for messages
+      public static let enable = L10n.tr("Settings", "siri.enable", fallback: "Allow Siri")
+      /// Shown when Siri access is granted
+      public static let enabled = L10n.tr("Settings", "siri.enabled", fallback: "Siri Allowed")
+      /// Footer explaining what Siri can do with mesh messages
+      public static let footer = L10n.tr("Settings", "siri.footer", fallback: "Ask Siri to send or read your mesh messages hands-free, and reply to announced notifications.")
+      /// Section header for Siri messaging settings
+      public static let header = L10n.tr("Settings", "siri.header", fallback: "Siri")
+    }
     public enum Telemetry {
       /// Toggle label for allowing telemetry requests
       public static let allowRequests = L10n.tr("Settings", "telemetry.allowRequests", fallback: "Allow Telemetry Requests")

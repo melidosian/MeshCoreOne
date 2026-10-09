@@ -151,6 +151,26 @@ public final class NotificationService: NSObject {
     activeRoomSessionID = roomSessionID
   }
 
+  // MARK: - Communication Notifications
+
+  /// Rewrites a direct or channel message notification just before it posts,
+  /// typically by attaching an `INSendMessageIntent` so the system shows the
+  /// sender and Siri can announce the message and take a reply. Returns the
+  /// content to post; a `nil` hook posts the original content unchanged.
+  /// Installed by `AppState.wireServicesIfConnected`.
+  public var decorateMessageNotification: (@MainActor (
+    _ content: UNMutableNotificationContent,
+    _ context: MessageNotificationContext
+  ) async -> UNNotificationContent)?
+
+  private func decorated(
+    _ content: UNMutableNotificationContent,
+    for context: MessageNotificationContext
+  ) async -> UNNotificationContent {
+    guard let decorateMessageNotification else { return content }
+    return await decorateMessageNotification(content, context)
+  }
+
   // MARK: - Badge Management
 
   /// Callback to get total unread count from data layer
@@ -325,9 +345,12 @@ public final class NotificationService: NSObject {
       content.badge = NSNumber(value: badgeCount + 1)
     }
 
-    let request = UNNotificationRequest(
+    let request = await UNNotificationRequest(
       identifier: messageID.uuidString,
-      content: content,
+      content: decorated(
+        content,
+        for: .directMessage(contactID: contactID, senderName: contactName, text: messageText)
+      ),
       trigger: nil
     )
 
@@ -387,9 +410,18 @@ public final class NotificationService: NSObject {
       content.badge = NSNumber(value: badgeCount + 1)
     }
 
-    let request = UNNotificationRequest(
+    let request = await UNNotificationRequest(
       identifier: messageID.uuidString,
-      content: content,
+      content: decorated(
+        content,
+        for: .channelMessage(
+          radioID: radioID,
+          channelIndex: channelIndex,
+          channelName: channelName,
+          senderName: senderName,
+          text: messageText
+        )
+      ),
       trigger: nil
     )
 

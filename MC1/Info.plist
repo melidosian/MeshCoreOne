@@ -20,6 +20,12 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>INIntentsSupported</key>
+	<array>
+		<string>INSendMessageIntent</string>
+		<string>INSearchForMessagesIntent</string>
+		<string>INSetMessageAttributeIntent</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAccessorySetupBluetoothServices</key>
@@ -42,6 +48,8 @@
 	<string>MeshCore One needs camera access to scan channel QR codes.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>MeshCore One uses your location to suggest a recommended radio preset for your area, show your position on maps, and sort contacts by distance. When you enable location sharing, MeshCore One also advertises your location to your mesh contacts.</string>
+	<key>NSSiriUsageDescription</key>
+	<string>MeshCore One uses Siri to send and read your mesh messages hands-free.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

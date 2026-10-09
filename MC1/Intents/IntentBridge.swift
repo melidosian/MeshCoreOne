@@ -9,6 +9,11 @@ import MC1Services
 @Observable
 @MainActor
 final class IntentBridge {
+  /// The single bridge for the process. App Intents receive it through
+  /// `AppDependencyManager`; the UIKit-instantiated SiriKit app delegate has
+  /// no injection point, so it reads it here.
+  static let shared = IntentBridge()
+
   private(set) var appState: AppState?
 
   func adopt(_ appState: AppState) {

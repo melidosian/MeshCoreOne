@@ -12,11 +12,12 @@ struct MC1App: App {
   @State private var appState: AppState
   @State private var awaitingDataProtection = false
   @Environment(\.scenePhase) private var scenePhase
+  @UIApplicationDelegateAdaptor(MC1AppDelegate.self) private var appDelegate
 
   /// Stable holder that App Intents read through `AppDependencyManager`. It
   /// must outlive the before-first-unlock `AppState` swap, so it is a plain
   /// stored property registered once in `init()`, not `@State`.
-  private let intentBridge = IntentBridge()
+  private let intentBridge = IntentBridge.shared
 
   /// Stages externally opened URLs across launch; see `PendingExternalURL`.
   private let pendingExternalURL = PendingExternalURL()

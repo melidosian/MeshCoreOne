@@ -643,6 +643,9 @@ final class AppState {
     // Set up notification center delegate, wire localized strings, then register categories
     UNUserNotificationCenter.current().delegate = services.notificationService
     services.notificationService.setStringProvider(NotificationStringProviderImpl())
+    services.notificationService.decorateMessageNotification = { [dataStore = services.dataStore] content, context in
+      await CommunicationNotificationDecorator(store: dataStore).decorate(content, for: context)
+    }
     await services.notificationService.setup()
 
     // Configure badge count callback
